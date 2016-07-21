@@ -1,0 +1,22 @@
+{
+  "name": "negarkhaneh",
+  "version": "1.0.0",
+  "description": "server of android negarkhaneh application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hphamid/negarkhanehServer.git"
+  },
+  "author": "hphamid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hphamid/negarkhanehServer/issues"
+  },
+  "homepage": "https://github.com/hphamid/negarkhanehServer#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

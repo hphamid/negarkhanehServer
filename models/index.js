@@ -2,4 +2,5 @@
  * Created by hamid on 7/22/16.
  */
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/negarkhaneh');
+const config = require('../config');
+mongoose.connect(config.dbAddress);

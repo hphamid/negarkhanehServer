@@ -1,7 +1,7 @@
 /**
  * Created by hamid on 7/22/16.
  */
-const Image = require("../models/image");
+const Image = require("../models/Image");
 
 module.exports.popular = function (start, count) {
     return new Promise(function (resolve, reject) {

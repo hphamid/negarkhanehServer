@@ -4,6 +4,8 @@
 const ImageServices = require('../services/ImageService');
 const LikeService = require('../services/LikeServices');
 const UserRepo = require('../repo/UserRepo');
+const express = require('express');
+const config = require('../config');
 
 module.exports = function(app){
     app.get("/api/new/:start/:count", function(req, res){
@@ -58,7 +60,8 @@ module.exports = function(app){
             res.send(error);
         });
     });
-    app.post("/getUser/:uniqueId", function(req, res){
+    app.use("/image", express.static(config.finalImagePath));
+    app.get("/getUser/:uniqueId", function(req, res){
         UserRepo.newUser(req.params.uniqueId).then(function(data){
             res.send(JSON.stringify(data));
         }).catch(function(error){

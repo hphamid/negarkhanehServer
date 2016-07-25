@@ -17,8 +17,7 @@ module.exports = function(app, passport){
         req.logout();
         res.send("ok");
     });
-    app.get("/profile", function(req, res){
-        req.isAuthenticated();
+    app.get("/admin/check", function(req, res){
         res.send(JSON.stringify(req.user));
     });
     app.post("/admin/newImage", upload.single('image') , function(req, res){

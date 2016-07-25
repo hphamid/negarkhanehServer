@@ -7,8 +7,8 @@ module.exports = function(app){
         if (req.isAuthenticated()){
             return next();
         }else{
-            res.status(400);
-            res.send('Bad request!!');
+            res.status(401);
+            res.send('Bad Access!!');
         }
     });
 };

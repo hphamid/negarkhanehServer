@@ -33,6 +33,15 @@ module.exports = function(app){
             throw error;
         });
     });
+    app.get("/api/image/:imageId", function(req, res){
+        ImageServices.getImageById(req.params.imageId, req.userId).then(function(data){
+            res.send(JSON.stringify(data));
+        }).catch(function(error){
+            res.status(500);
+            res.send(error);
+            throw error;
+        });
+    });
     app.post("/api/like/:imageId", function(req, res){
         LikeService.likeImage(req.userId, req.params.imageId).then(function(data){
             res.send(JSON.stringify(data));

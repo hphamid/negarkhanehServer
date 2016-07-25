@@ -10,7 +10,7 @@ module.exports = function (imageItem, likeItem){
             return likeItem
         },
         toJSON: function(){
-            return {image: imageItem, like: likeItem};
+            return {image: imageItem||undefined, like: likeItem||undefined};
         }
     }
 }

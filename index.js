@@ -27,9 +27,9 @@ app.use(session(
     }
 )); // session secret
 
-configurePassport(app);
-middleware(app);
-routes(app);
+var passport = configurePassport(app);
+middleware(app, passport);
+routes(app, passport);
 
 app.listen(8080);
 console.log("app started at port: 8080");

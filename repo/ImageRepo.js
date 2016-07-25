@@ -2,7 +2,6 @@
  * Created by hamid on 7/22/16.
  */
 const Image = require("../models/image");
-const mongoose = require('mongoose');
 
 module.exports.popular = function (start, count) {
     return new Promise(function (resolve, reject) {
@@ -23,6 +22,21 @@ module.exports.new = function (start, count) {
         Image.
         find({
             released: true
+        }).skip(start)
+            .limit(count)
+            .sort({creationDate: -1})
+            .exec(function (err, doc) {
+                if (err) return reject(err);
+                return resolve(doc);
+            });
+    });
+};
+
+module.exports.notReleased = function (start, count) {
+    return new Promise(function (resolve, reject) {
+        Image.
+        find({
+            released: false
         }).skip(start)
             .limit(count)
             .sort({creationDate: -1})
@@ -73,11 +87,11 @@ module.exports.byCategory = function (start, count, category) {
     });
 };
 
-module.exports.addNewImage = function (name, path, categories) {
+module.exports.addNewImage = function (name, path, released) {
     return new Promise(function (resolve, reject) {
         var newImage = new Image({
             name: name, likeCount: 0,
-            categories: categories, released: true,
+            released: released,
             path: path
         });
         newImage.save(function (err, result) {
@@ -97,7 +111,7 @@ module.exports.incrementLikeCount = function (imageId) {
         }).exec(function (err, result) {
             if (err) return reject(err);
             return resolve(result);
-        })
+        });
     });
 };
 
@@ -107,6 +121,32 @@ module.exports.decrementLikeCount = function (imageId) {
             _id: imageId
         }, {
             $inc: { likeCount: -1 }
+        }).exec(function (err, result) {
+            if (err) return reject(err);
+            return resolve(result);
+        })
+    });
+};
+
+module.exports.setReleased = function(imageId, released){
+    return new Promise(function(resolve, reject){
+        Image.findOneAndUpdate({
+            _id: imageId
+        }, {
+            released: released
+        }).exec(function (err, result) {
+            if (err) return reject(err);
+            return resolve(result);
+        })
+    });
+};
+
+module.exports.rename = function(imageId, name){
+    return new Promise(function(resolve, reject){
+        Image.findOneAndUpdate({
+            _id: imageId
+        }, {
+            name: name
         }).exec(function (err, result) {
             if (err) return reject(err);
             return resolve(result);

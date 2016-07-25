@@ -7,7 +7,6 @@ var imageSchema = mongoose.Schema({
     name: String,
     path: String,
     likeCount:  Number,
-    categories: [String],
     released: Boolean,
     creationDate: { type: Date, default: Date.now }
 });

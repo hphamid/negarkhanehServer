@@ -13,7 +13,7 @@ module.exports = function (app) {
         } else {
             UserRepo.byId(userId).then(function(data){
                 req.userId = userId;
-                req.user = data;
+                req.requestUser = data;
                 next();
             }).catch(function(error){
                 res.status(400);

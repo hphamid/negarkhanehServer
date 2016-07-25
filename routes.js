@@ -4,7 +4,7 @@
 const AdminControllers = require('./controller/AdminControllers');
 const UserControllers = require('./controller/UserControllers');
 
-module.exports = function(app){
+module.exports = function(app, passport){
     UserControllers(app);
-    AdminControllers(app);
+    AdminControllers(app, passport);
 };

@@ -13,12 +13,12 @@ var AdminUserSchema = mongoose.Schema({
 
 
 AdminUserSchema.methods.setPassword = function(password){
-    if(!password || isEmpty(password)) return;
+    if(!password) return;
     this.password = passwordHash.generate(password);
 };
 
 AdminUserSchema.methods.validatePassword = function(password){
-    passwordHash.verify(password, this.password);
+    return passwordHash.verify(password, this.password);
 };
 
 module.exports = mongoose.model("AdminUser", AdminUserSchema);

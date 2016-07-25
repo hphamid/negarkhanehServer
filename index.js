@@ -11,6 +11,7 @@ const session = require('express-session');
 const configurePassport = require('./configurePassport');
 const routes = require('./routes');
 const middleware = require('./middleware');
+const config = require('./config');
 
 var app = express() ;
 app.use(morgan('dev'));
@@ -31,8 +32,8 @@ var passport = configurePassport(app);
 middleware(app, passport);
 routes(app, passport);
 
-app.listen(8080);
-console.log("app started at port: 8080");
+app.listen(config.port);
+console.log("app started at port: " + config.port);
 
 
 
